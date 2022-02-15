@@ -1,20 +1,15 @@
-import { useEffect } from 'react';
-import incomeImg from '../../assets/income.svg'
-import outcomeImg from '../../assets/outcome.svg'
-import totalImg from '../../assets/total.svg'
-import { api } from '../../services/api';
+import { useContext } from "react";
+import incomeImg from "../../assets/income.svg";
+import outcomeImg from "../../assets/outcome.svg";
+import totalImg from "../../assets/total.svg";
+import { TransactionsContext } from "../../TransactionsContext";
 
 import { Container } from "./styles";
 
-export function Summary(){
+export function Summary() {
+  const data = useContext(TransactionsContext);
 
-  useEffect(()=>{
-    api.get('transactions')
-      .then(response => response.data)
-      .then(data => console.log(data))
-  }, [])
-
-  return(
+  return (
     <Container>
       <div>
         <header>
@@ -30,7 +25,7 @@ export function Summary(){
         </header>
         <strong>- R$500,00</strong>
       </div>
-      <div className='highlight-background'>
+      <div className="highlight-background">
         <header>
           <p>Total</p>
           <img src={totalImg} alt="Total" />
@@ -38,5 +33,5 @@ export function Summary(){
         <strong>R$500,00</strong>
       </div>
     </Container>
-  )
+  );
 }
